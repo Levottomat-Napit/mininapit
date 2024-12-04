@@ -76,3 +76,8 @@ nav li:hover {
   align-items: center;
 
 }
+
+pre {
+  width: 100%;
+  max-width: 400px;
+}
