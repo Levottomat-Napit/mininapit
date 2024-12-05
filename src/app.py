@@ -16,7 +16,9 @@ from entities.citation import (
 
 @app.get('/')
 def index():
-    citations = get_citations()
+    sort_by = request.args.get('sort_by', None)
+
+    citations = get_citations(sort_by=sort_by)
 
     return render_template('index.html', citations=citations)
 
@@ -28,13 +30,18 @@ def new():
 def article_new():
 
     info = Article(
-        key=request.form['key_article'],
-        author=request.form['author_article'],
-        title=request.form['title_article'],
-        journal=request.form['journal_article'],
-        year=request.form['year_article'],
-        volume=request.form.get('volume_article'),
-        pages=request.form.get('pages_article')
+            0,
+            request.form['key_article'],
+            request.form['author_article'],
+            request.form['title_article'],
+            request.form['journal_article'],
+            request.form['year_article'],
+            request.form.get('volume_article'),
+            request.form.get('number_article'),
+            request.form.get('pages_article'),
+            request.form.get('month_article'),
+            request.form.get('note_article'),
+            request.form.get('annote_article'),
     )
 
     create_article(info)
@@ -81,8 +88,16 @@ def delete_citation():
 
 @app.get('/toggle-bibtex')
 def toggle_bibtex():
-    citations = get_citations()
+
+    sort_by = request.args.get('sort_by', None)
+
+    citations = get_citations(sort_by=sort_by)
+
     return render_template('index.html', citations=citations, is_bibtex=True)
+
+@app.get('/order')
+def order_citation():
+    return redirect('/')
 
 if test_env:
     @app.get('/reset-db')
