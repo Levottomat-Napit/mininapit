@@ -4,6 +4,21 @@
 
 {% block body %}
 <div class="main-page">
+  <div class="ordering glass-effect">
+    <h4>
+      Järjestä viitteet
+    </h4>
+    <form action="/order" method="GET">
+      <input type="radio" id="orderkey" name="order" value="key">
+      <label for="orderkey">Avain</label><br>
+      <input type="radio" id="orderauthor" name="order" value="author">
+      <label for="orderauthor">Tekijä</label><br>
+      <input type="radio" id="ordertitle" name="order" value="title">
+      <label for="orderkey">Nimi</label><br>
+      <button class="order-button" type="submit">Järjestä</button>
+    </form>
+  </div>
+
   <div class="citations glass-effect">
     <h2>Viitteet</h2>
     
@@ -46,9 +61,6 @@
       </form>
     {% endif %}
   </div>
-
-  <br>
-  <a href="/new">Luo uusi viite</a>
 </div>
 
 {% endblock %}

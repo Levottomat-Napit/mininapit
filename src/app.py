@@ -69,6 +69,10 @@ def toggle_bibtex():
     citations = get_citations()
     return render_template('index.html', citations=citations, is_bibtex=True)
 
+@app.get('/order')
+def order_citation():
+    return redirect('/')
+
 if test_env:
     @app.get('/reset-db')
     def reset_database():
