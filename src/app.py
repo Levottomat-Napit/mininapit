@@ -50,12 +50,11 @@ def article_new():
 def inproceedings_new():
 
     info = Inproceedings(
-        0,
-        request.form['key_inproceedings'],
-        request.form['author_inproceedings'],
-        request.form['title_inproceedings'],
-        request.form['year_inproceedings'],
-        request.form['booktitle_inproceedings']
+        key=request.form['key_inproceedings'],
+        author=request.form['author_inproceedings'],
+        title=request.form['title_inproceedings'],
+        year=request.form['year_inproceedings'],
+        booktitle=request.form['booktitle_inproceedings']
     )
 
     create_inproceedings(info)

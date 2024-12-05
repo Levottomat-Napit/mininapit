@@ -1,6 +1,6 @@
 from sqlalchemy import text
 from config import db
-from entities.citation import Article, Inproceedings
+from entities.citation import Article, Inproceedings, Book
 
 def get_citations(sort_by=None):
     articles = db.session.execute(text('SELECT * FROM articles')).fetchall()
@@ -20,7 +20,8 @@ def get_citations(sort_by=None):
 
     return citations
 
-def create_article(info:Article):
+
+def create_article(info: Article):
     sql = text('''INSERT INTO articles (key, author, title, journal, year, volume, pages)
              VALUES (:key, :author, :title, :journal, :year, :volume, :pages)''')
 
@@ -35,7 +36,7 @@ def create_article(info:Article):
     })
     db.session.commit()
 
-def create_inproceedings(info:Inproceedings):
+def create_inproceedings(info: Inproceedings):
     sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle)
              VALUES (:key, :author, :title, :year, :booktitle)''')
 
@@ -50,7 +51,7 @@ def create_inproceedings(info:Inproceedings):
 
 def delete_citation_by_id(cid, ctype):
     # no sql injections
-    if not ctype in ('article', 'inproceedings'):
+    if not ctype in ('article', 'inproceedings', 'book'):
         return
 
     # change to plural if needed

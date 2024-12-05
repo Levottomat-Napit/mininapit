@@ -1,7 +1,7 @@
 from sqlalchemy import text
 from config import db, app
 
-TABLES = ['articles', 'inproceedings']
+TABLES = ['articles', 'inproceedings', 'books']
 
 def table_exists(name):
     sql_table_existence = text(
@@ -42,7 +42,11 @@ def setup_db():
     '  journal TEXT NOT NULL,'
     '  year INT NOT NULL,'
     '  volume TEXT,'
-    '  pages TEXT'
+    '  pages TEXT,'
+    '  number TEXT,' # deliberately TEXT
+    '  month TEXT,'
+    '  note TEXT,'
+    '  annote TEXT'
     ')'
     )
 
@@ -57,7 +61,41 @@ def setup_db():
     '  author TEXT NOT NULL,'
     '  title TEXT NOT NULL,'
     '  year INT NOT NULL,'
-    '  booktitle TEXT NOT NULL'
+    '  booktitle TEXT NOT NULL,'
+    '  editor TEXT,'
+    '  volume TEXT,'
+    '  number TEXT,' # deliberately TEXT
+    '  series TEXT,'
+    '  pages TEXT,'
+    '  month TEXT,'
+    '  address TEXT,'
+    '  organization TEXT,'
+    '  publisher TEXT,'
+    '  note TEXT,'
+    '  annote TEXT'
+    ')'
+    )
+
+    db.session.execute(sql)
+    db.session.commit()
+
+    print('Creating table books')
+    sql = text(
+    'CREATE TABLE books ('
+    '  id SERIAL PRIMARY KEY,'
+    '  key TEXT UNIQUE NOT NULL,'
+    '  author TEXT NOT NULL,'
+    '  title TEXT NOT NULL,'
+    '  publisher TEXT NOT NULL,'
+    '  year INT NOT NULL,'
+    '  volume INT,'
+    '  number TEXT,' # deliberately TEXT
+    '  series TEXT,'
+    '  address TEXT,'
+    '  edition TEXT,'
+    '  month TEXT,'
+    '  note TEXT,'
+    '  annote TEXT'
     ')'
     )
 
