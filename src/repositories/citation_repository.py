@@ -9,7 +9,7 @@ def get_citations(sort_by=None):
 
     citations = [Article(*art) for art in articles] + [Inproceedings(*ip) for ip in inproceedings]
 
-    if sort_by == None:
+    if sort_by is None:
         pass
     elif sort_by == 'year':
         citations.sort(key=lambda x: x.year, reverse=True)

@@ -17,7 +17,7 @@ def index():
     sort_by = request.args.get('sort_by', None)
 
     citations = get_citations(sort_by=sort_by)
-    
+
     return render_template('index.html', citations=citations)
 
 @app.get('/new')
@@ -57,11 +57,6 @@ def inproceedings_new():
     create_inproceedings(info)
 
     return redirect('/')
-
-@app.route('/sort')
-def sort():
-    
-    return render_template('/')
 
 @app.post('/delete')
 def delete_citation():
