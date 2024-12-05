@@ -35,7 +35,11 @@ def article_new():
             request.form['journal_article'],
             request.form['year_article'],
             request.form.get('volume_article'),
-            request.form.get('pages_article')
+            request.form.get('number_article'),
+            request.form.get('pages_article'),
+            request.form.get('month_article'),
+            request.form.get('note_article'),
+            request.form.get('annote_article'),
     )
 
     create_article(info)
@@ -68,7 +72,11 @@ def delete_citation():
 
 @app.get('/toggle-bibtex')
 def toggle_bibtex():
-    citations = get_citations()
+
+    sort_by = request.args.get('sort_by', None)
+
+    citations = get_citations(sort_by=sort_by)
+
     return render_template('index.html', citations=citations, is_bibtex=True)
 
 @app.get('/order')
