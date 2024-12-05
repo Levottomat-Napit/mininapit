@@ -8,12 +8,12 @@
     <h4>
       Järjestä viitteet
     </h4>
-    <form action="/order" method="GET">
-      <input type="radio" id="orderkey" name="order" value="key">
+    <form action="/" method="GET">
+      <input type="radio" id="orderkey" name="sort_by" value="key">
       <label for="orderkey">Avain</label><br>
-      <input type="radio" id="orderauthor" name="order" value="author">
+      <input type="radio" id="orderauthor" name="sort_by" value="author">
       <label for="orderauthor">Tekijä</label><br>
-      <input type="radio" id="ordertitle" name="order" value="title">
+      <input type="radio" id="ordertitle" name="sort_by" value="title">
       <label for="orderkey">Nimi</label><br>
       <button class="order-button" type="submit">Järjestä</button>
     </form>
