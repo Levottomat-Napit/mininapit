@@ -60,3 +60,4 @@ SECRET_KEY=somethingsecret
 * Tests should pass
 * If the PR includes todos, they should be all checked
 * The creator of the pull request will merge it when the most recent changes have been approved
+

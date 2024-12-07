@@ -73,9 +73,9 @@ def book_new():
 
 @app.post('/delete')
 def delete_citation():
-    cid = request.form['id']
-    ctype = request.form['type']
-    delete_citation_by_id(cid, ctype)
+    citation_id = request.form['id']
+    citation_type = request.form['type']
+    delete_citation_by_id(citation_id, citation_type)
 
     return redirect('/')
 
