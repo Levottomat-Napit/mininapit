@@ -13,7 +13,7 @@ body {
   background-repeat: repeat;
 }
 
-h1, h2 {
+h1, h2, h3, h4 {
   margin-top: 0;
 }
 
@@ -81,7 +81,6 @@ nav li:hover {
 
 .citations {
   margin-right: 30px;
-  margin-left: 200px
 }
 
 .citations form {
@@ -98,10 +97,10 @@ nav li:hover {
 .glass-effect {
   background: rgba(255, 255, 255, 0.37);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12.1px);
+  backdrop-filter: blur(8px);
   border-radius: 16px;
   padding: 3rem;
-  -webkit-backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .citation-container {
@@ -118,8 +117,8 @@ nav li:hover {
 
 .form-row {
   display: flex;
-  justify-content: space-between; /* Aligns items to the left and right */
-  margin-bottom: 10px; /* Adds space between form groups */
+  justify-content: space-between;
+  margin-bottom: 10px; 
 }
 
 .form-row label {
@@ -133,4 +132,28 @@ nav li:hover {
 pre {
   width: 100%;
   max-width: 400px;
+}
+
+.ordering {
+  height: 100%;
+  margin-left: 100px;
+  padding-top: 30px;
+}
+
+.doi-container {
+  height: 100%;
+  max-height: 100px;
+}
+
+.ordering .order-button {
+  margin-top: 10px;
+}
+
+.ordering input[type="radio"] {
+  transform: scale(2);
+  margin-bottom: 15px;
+}
+
+.ordering label {
+  padding: 1rem;
 }
