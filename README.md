@@ -1,4 +1,4 @@
-# OhTu-miniproject for managing LaTeX references
+# OhTu-miniproject for managing LaTeX references 
 
 **aka Bibtex-apuri**
 

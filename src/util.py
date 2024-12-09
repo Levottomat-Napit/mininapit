@@ -1,5 +1,5 @@
 def string_or_empty_string(s):
-    if s is None:
+    if not s:
         return ''
 
     return s
