@@ -2,7 +2,7 @@ from sqlalchemy import text
 from config import db
 from entities.citation import Article, Inproceedings, Book
 
-def get_citations(sort_by:None):
+def get_citations(sort_by=None):
     articles = db.session.execute(text('SELECT * FROM articles')).mappings().fetchall()
     inproceedings = db.session.execute(text('SELECT * FROM inproceedings')).mappings().fetchall()
     books = db.session.execute(text('SELECT * FROM books')).mappings().fetchall()
