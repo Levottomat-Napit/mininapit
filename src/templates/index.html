@@ -4,6 +4,22 @@
 
 {% block body %}
 <div class="main-page">
+  <div class="doi-container glass-effect">
+    <form id="doi">
+      <div class="form-row">
+        <label for="doi">DOI-tunnus:</label>
+        <input type="text" name="doi" required>
+      </div>
+      <div class="form-row">
+        <label for="key">Viiteavain:</label>
+        <input type="text" name="key" required>
+      </div>
+      <div class="form-row">
+        <button class="normal-button" type="submit" id="doi">Lisää DOI viite</button>
+      </div>
+    </form>
+  </div>
+
   <div class="citations glass-effect">
     <h2>Viitteet</h2>
     
