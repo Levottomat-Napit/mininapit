@@ -3,85 +3,162 @@
 {% block title %}Luo uusi viite{% endblock %}
 
 {% block body %}
-  <label>Viitteen tyyppi:</label>
-  <select id="formSelector">
-    <option selected="selected">Valitse viitteen tyyppi</option>
-    <option value="article">@article</option>
-    <option value="inproceedings">@inproceedings</option>
-  </select>
+<div class="new-citation-container glass-effect">
+  <div class="form-selector-container">
+    <label>Viitteen tyyppi:</label>
+    <select id="formSelector">
+      <option selected="selected">Valitse viitteen tyyppi</option>
+      <option value="article">@article</option>
+      <option value="inproceedings">@inproceedings</option>
+      <option value="book">@book</option>
+    </select>
+  </div>
+
   <div id="forms">
     <form id="article" action="/article_new" class="form" method="POST" style="display:none">
-      <div>
+      <div class="form-row">
         <label for="key">Viitteen nimi:</label>
         <input type="text" name="key_article" required>
       </div>
 
-      <div>
+      <div class="form-row">
         <label for="author">Kirjoittaja:</label>
         <input type="text" name="author_article" required>
       </div>
 
-      <div>
+      <div class="form-row">
         <label for="title">Otsikko:</label>
         <input type="text" name="title_article" required>
       </div>
 
-      <div>
+      <div class="form-row">
         <label for="journal">Julkaisupaikka:</label>
         <input type="text" name="journal_article" required>
       </div>
 
-      <div>
+      <div class="form-row">
         <label for="year">Vuosi:</label>
         <input type="number" name="year_article" required>
       </div>
 
-      <div>
+      <div class="form-row">
         <label for="volume">Volyymi:</label>
         <input type="text" name="volume_article">
       </div>
 
-      <div>
+      <div class="form-row">
         <label for="pages">Sivut:</label>
         <input type="text" name="pages_article">
       </div>
 
-      <div>
-        <button type="submit" id="article">Lisää viite</button>
+      <div class="form-row">
+        <button class="normal-button" type="submit" id="article">Lisää viite</button>
       </div>
     </form>
 
     <form id="inproceedings" action="/inproceedings_new" class="form" method="POST" style="display:none">
-      <div>
+      <div class="form-row">
         <label for="key">Viitteen nimi:</label>
         <input type="text" name="key_inproceedings" required>
       </div>
   
-      <div>
+      <div class="form-row">
         <label for="author">Kirjoittaja:</label>
         <input type="text" name="author_inproceedings" required>
       </div>
   
-      <div>
+      <div class="form-row">
         <label for="title">Otsikko:</label>
         <input type="text" name="title_inproceedings" required>
       </div>
   
-      <div>
+      <div class="form-row">
         <label for="year">Vuosi:</label>
         <input type="number" name="year_inproceedings" required>
       </div>
   
-      <div>
+      <div class="form-row">
         <label for="volume">Kirjan nimi:</label>
         <input type="text" name="booktitle_inproceedings">
       </div>
   
-      <div>
-        <button type="submit" id="inproceedings">Lisää viite</button>
+      <div class="form-row">
+        <button class="normal-button" type="submit" id="inproceedings">Lisää viite</button>
       </div>
     </form>
   </div>
+
+  <form id="book" action="/book_new" class="form" method="POST" style="display:none">
+    <div>
+      <label for="key">Viitteen nimi:</label>
+      <input type="text" name="key_book" required>
+    </div>
+
+    <div>
+      <label for="author">Kirjoittaja:</label>
+      <input type="text" name="author_book" required>
+    </div>
+
+    <div>
+      <label for="title">Kirjan nimi:</label>
+      <input type="text" name="title_book" required>
+    </div>
+
+    <div>
+      <label for="publisher">Julkaisija:</label>
+      <input type="text" name="publisher_book" required>
+    </div>
+
+    <div>
+      <label for="year">Vuosi:</label>
+      <input type="number" name="year_book" required>
+    </div>
+
+    <div>
+      <label for="volume">Osa:</label>
+      <input type="number" name="volume_book">
+    </div>
+
+    <div>
+      <label for="number">Numero:</label>
+      <input type="text" name="number_book">
+    </div>
+
+    <div>
+      <label for="series">Sarja:</label>
+      <input type="text" name="series_book">
+    </div>
+
+    <div>
+      <label for="address">Osoite:</label>
+      <input type="text" name="address_book">
+    </div>
+
+    <div>
+      <label for="edition">Editio:</label>
+      <input type="text" name="edition_book">
+    </div>
+
+    <div>
+      <label for="month">Kuukausi:</label>
+      <input type="text" name="month_book">
+    </div>
+
+    <div>
+      <label for="note">Kommentti:</label>
+      <input type="text" name="note_book">
+    </div>
+
+    <div>
+      <label for="annote">Huomioita:</label>
+      <input type="text" name="annote_book">
+    </div>
+
+    <div>
+      <button type="submit" id="book">Lisää viite</button>
+    </div>
+  </form>
+</div>
 
   <a href="/">Palaa etusivulle</a>
 
@@ -100,4 +177,5 @@
       });
     });
   </script>
+</div>
 {% endblock %}

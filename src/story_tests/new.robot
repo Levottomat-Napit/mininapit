@@ -52,7 +52,7 @@ Submit and check that the toggle BibTeX button works
     Input Text  pages_article  ${pages}
     Click Button  article
     Page Should Contain   mikko: tutkimus (testi)
-    Click Button  Toggle BibTeX
+    Click Button  BibTeX viitteet
     Page Should Contain  ${bibtex}
-    Click Button  Toggle normal citations
+    Click Button  Normaalit viitteet
     Page Should Contain   mikko: tutkimus (testi)

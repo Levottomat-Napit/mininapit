@@ -3,48 +3,52 @@
 {% block title %}Bibtex-apuri{% endblock %} 
 
 {% block body %}
-  {% if is_bibtex %}
-    <form action="/" method="GET">
-      <button type="submit">Toggle normal citations</button>
-    </form>
-  {% else %}
-    <form action="/toggle-bibtex" method="GET">
-      <button type="submit">Toggle BibTeX</button>
-    </form>
-  {% endif %}
-
-  <br>
-
-  {% for citation in citations %}
-    {% if is_bibtex %}
-      <pre>{{citation.bibtex()}}</pre>
+<div class="main-page">
+  <div class="citations glass-effect">
+    <h2>Viitteet</h2>
+    
+    {% if citations %}
+      {% for citation in citations %}
+        <div class="citation-container">
+          {% if is_bibtex %}
+            <pre>{{ citation.bibtex() }}</pre>
+          {% else %}
+            {{ citation }}
+          {% endif %}
+          {% if not is_bibtex %}
+            <form action="/delete" method="POST" onsubmit="return popup()">
+              <input type="hidden" name="id" value="{{ citation.id }}">
+              <input type="hidden" name="type" value="{{ citation.type_as_string }}">
+              <button class="delete-button" type="submit">Poista</button>
+            </form>
+          {% endif %}
+        </div>
+      {% endfor %}
     {% else %}
-      {{citation}}
-    {% endif %}
-    {% if not is_bibtex %}
-    <form action="/delete" method="POST" onsubmit="return popup()">
-      <input type="hidden" name="id" value="{{citation.id}}">
-      <input type="hidden" name="type" value="{{citation.type_as_string}}">
-      <button type="submit">Poista</button>
-    </form>
+      <p>Ei lisättyjä viitteitä</p>
     {% endif %}
 
-    <br>
-  {% else %}
-    <p>Ei lisättyjä viitteitä</p>
-  {% endfor %}
+    <script>
+      function popup() {
+        return confirm("Are you sure you want to delete the citation?");
+      }
+    </script>
+  </div>
+
+  <div class="toggle-bibtex">
+    {% if is_bibtex %}
+      <form action="/" method="GET">
+        <button type="submit">Normaalit viitteet</button>
+      </form>
+    {% else %}
+      <form action="/toggle-bibtex" method="GET">
+        <button type="submit">BibTeX viitteet</button>
+      </form>
+    {% endif %}
+  </div>
 
   <br>
-
   <a href="/new">Luo uusi viite</a>
+</div>
 
-  <script>
-    function popup() {
-      if(!confirm('Are you sure you want to delete the citation?')) {
-        return false
-      }
-
-      this.form.submit();
-    }
-  </script>
 {% endblock %}

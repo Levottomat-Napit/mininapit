@@ -4,12 +4,14 @@ from repositories.citation_repository import (
     get_citations,
     create_article,
     create_inproceedings,
+    create_book,
     delete_citation_by_id
 )
 from config import app, test_env
 from entities.citation import (
     Article,
-    Inproceedings
+    Inproceedings,
+    Book
 )
 
 @app.get('/')
@@ -26,14 +28,13 @@ def new():
 def article_new():
 
     info = Article(
-            0,
-            request.form['key_article'],
-            request.form['author_article'],
-            request.form['title_article'],
-            request.form['journal_article'],
-            request.form['year_article'],
-            request.form.get('volume_article'),
-            request.form.get('pages_article')
+        key=request.form['key_article'],
+        author=request.form['author_article'],
+        title=request.form['title_article'],
+        journal=request.form['journal_article'],
+        year=request.form['year_article'],
+        volume=request.form.get('volume_article'),
+        pages=request.form.get('pages_article')
     )
 
     create_article(info)
@@ -44,23 +45,37 @@ def article_new():
 def inproceedings_new():
 
     info = Inproceedings(
-        0,
-        request.form['key_inproceedings'],
-        request.form['author_inproceedings'],
-        request.form['title_inproceedings'],
-        request.form['year_inproceedings'],
-        request.form['booktitle_inproceedings']
+        key=request.form['key_inproceedings'],
+        author=request.form['author_inproceedings'],
+        title=request.form['title_inproceedings'],
+        year=request.form['year_inproceedings'],
+        booktitle=request.form['booktitle_inproceedings']
     )
 
     create_inproceedings(info)
 
     return redirect('/')
 
+@app.post('/book_new')
+def book_new():
+
+    info = Book(
+        key=request.form['key_book'],
+        author=request.form['author_book'],
+        title=request.form['title_book'],
+        publisher=request.form['publisher_book'],
+        year=request.form['year_book']
+    )
+
+    create_book(info)
+
+    return redirect('/')
+
 @app.post('/delete')
 def delete_citation():
-    cid = request.form['id']
-    ctype = request.form['type']
-    delete_citation_by_id(cid, ctype)
+    citation_id = request.form['id']
+    citation_type = request.form['type']
+    delete_citation_by_id(citation_id, citation_type)
 
     return redirect('/')
 

@@ -1,6 +1,7 @@
 :root {
-  --primary-color: bisque;
+  --primary-color: #fee3b4;
   --secondary-color: #333;
+  --tertiary-color: #949393;
   --text-color: #fff;
 }
 
@@ -10,7 +11,13 @@ body {
   background-color: var(--primary-color);
 }
 
-h1 {
+body {
+  background-image: url('./background.jpg'); 
+  background-repeat: repeat; 
+  margin: 0; 
+}
+
+h1, h2 {
   margin-top: 0;
 }
 
@@ -74,7 +81,56 @@ nav li:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
+.citations {
+  margin-right: 30px;
+}
+
+.citations form {
+  display: inline-block;
+}
+
+.main-page {
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  justify-content: center;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.37);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.1px);
+  border-radius: 16px;
+  padding: 3rem;
+  -webkit-backdrop-filter: blur(12.1px);
+}
+
+.citation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-citaion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between; /* Aligns items to the left and right */
+  margin-bottom: 10px; /* Adds space between form groups */
+}
+
+.form-row label {
+  flex: 1;
+}
+
+.form-selector-container {
+  margin-bottom: 3rem;
 }
 
 pre {

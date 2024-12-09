@@ -4,12 +4,22 @@ from entities.citation import Article
 class TestBibtexGeneration(unittest.TestCase):
     def test_generate_bibtex_returns_correctly_formatted_article(self):
         article1 = Article(
-            1, 'article1', 'John Doe', 'Example Article',
-            'Example Journal', 2022, 1, '1-10'
+            key='article1',
+            author='John Doe',
+            title='Example Article',
+            journal='Example Journal',
+            year=2022,
+            volume=1,
+            pages='1-10'
         )
         article2 = Article(
-            2, 'article2', 'Jane Doe', 'Another Example Article',
-            'Another Example Journal', 2023, 2, '11-20'
+            key='article2',
+            author='Jane Doe',
+            title='Another Example Article',
+            journal='Another Example Journal',
+            year=2023,
+            volume=2,
+            pages='11-20'
         )
         citations = [article1, article2]
         expected_bibtex = [
