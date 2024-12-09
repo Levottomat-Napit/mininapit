@@ -13,6 +13,7 @@ from entities.citation import (
     Inproceedings,
     Book
 )
+from doi_search import doi_search
 
 @app.get('/')
 def index():
@@ -95,3 +96,16 @@ if test_env:
     @app.get('/alive')
     def alive():
         return 'yes'
+    
+@app.post('/doi')
+def add_doi_citation():
+    if request.method == "POST":
+        doi = request.form.get('doi')
+        key = request.form.get('key')
+        try:
+            print('here!!!!!!!!!!!')
+            doi_search(doi, key)
+        except ValueError:
+            print('Error: DOI query did not succeed')
+
+    return redirect('/')
