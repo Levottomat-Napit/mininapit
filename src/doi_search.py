@@ -23,19 +23,43 @@ def doi_search(doi, data_key):
     if data_type == "journal-article":
         data_journal = data["message"]["container-title"][0]
         article = Article(
-            key=data_key, 
-            author=data_author, 
-            title=data_title, 
+            key = data_key, 
+            author = data_author, 
+            title = data_title, 
             journal = data_journal, 
             year = data_year)
         create_article(article)
         return True
+    
     elif data_type == "proceedings-article":
-        pass
-    elif data_type == "book":
-        pass
+        data_booktype = data["message"]["container-title"][0]
+        inproceeding = Inproceedings(
+            key = data_key,
+            author = data_author,
+            title = data_title,
+            year = data_year,
+            booktitle = data_booktype
+        )
+        create_inproceedings(inproceeding)
+        return True
+    
+    elif data_type == "book" or data_type == "edited_book":
+        data_publisher = data["message"]["publisher"]
+        book = Book(
+            key = data_key,
+            author = data_author,
+            title = data_title,
+            publisher = data_publisher,
+            year = data_year
+        )
+        create_book(book)
+        return True
+    
     else:
         return False
     
-# An example search
-# doi_search("10.10.1109/TASLP.2019.2950099", "rust")
+# An example inproceeding search
+# doi_search("10.10.1109/TASLP.2019.2950099", "inproceeding")
+
+# An example book search
+# doi_search("10.1145/3674127", "book")
