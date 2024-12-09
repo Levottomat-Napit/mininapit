@@ -38,4 +38,4 @@ def doi_search(doi, data_key):
         return False
     
 # An example search
-doi_search("10.10.1109/TASLP.2019.2950099", "rust")
+# doi_search("10.10.1109/TASLP.2019.2950099", "rust")
