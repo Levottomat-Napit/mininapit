@@ -13,7 +13,7 @@ ${year}     2000
 ${volume}     15
 ${pages}     20
 ${booktitle}     kirjannimi
-${bibtex}    @article{testi,\n \ author = {mikko},\n \ title = {tutkimus},\n \ journal = {lehti},\n \ year = {2000},\n \ volume = {15},\n \ pages = {20}\n}
+${bibtex}    @article{testi,\n \ author = {mikko},\n \ title = {tutkimus},\n \ journal = {lehti},\n \ year = {2000},\n \ volume = {15},\n \ pages = {20},\n}
 
 *** Test Cases ***
 Submit and check for article citation
