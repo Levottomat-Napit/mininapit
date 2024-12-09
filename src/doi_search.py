@@ -11,7 +11,7 @@ def doi_search(doi, data_key):
     except:
             print("URL not found")
             return
-    print(data)
+
     data_type = data["message"]["type"]
     data_title = data["message"]["title"][0]
     data_author = []
@@ -20,8 +20,6 @@ def doi_search(doi, data_key):
     for author in authors:
         data_author.append(author["given"]+" "+author["family"])
     data_author = ", ".join(data_author)
-    print(data_author)
-    print(data_year)
 
     if data_type == "journal-article":
         data_journal = data["message"]["container-title"][0]
