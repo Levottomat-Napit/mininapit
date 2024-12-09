@@ -8,9 +8,9 @@ def get_citations():
     books = db.session.execute(text('SELECT * FROM books')).mappings().fetchall()
 
     return (
-        [Article(**art) for art in articles] +
-        [Inproceedings(**ip) for ip in inproceedings] +
-        [Book(**bk) for bk in books]
+        [Article(**article) for article in articles] +
+        [Inproceedings(**inproceeding) for inproceeding in inproceedings] +
+        [Book(**book) for book in books]
     )
 
 def create_article(info: Article):
@@ -54,15 +54,15 @@ def create_book(info: Book):
     })
     db.session.commit()
 
-def delete_citation_by_id(cid, ctype):
+def delete_citation_by_id(citation_id, citation_type):
     # no sql injections
-    if not ctype in ('article', 'inproceedings', 'book'):
+    if not citation_type in ('article', 'inproceedings', 'book'):
         return
 
     # change to plural if needed
-    if ctype[-1] != 's':
-        ctype += 's'
+    if citation_type[-1] != 's':
+        citation_type += 's'
 
-    sql = text(f'DELETE FROM {ctype} WHERE id = :id')
-    db.session.execute(sql, {'id': cid})
+    sql = text(f'DELETE FROM {citation_type} WHERE id = :id')
+    db.session.execute(sql, {'id': citation_id})
     db.session.commit()
