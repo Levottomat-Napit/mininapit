@@ -29,7 +29,7 @@ class TestBibtexGeneration(unittest.TestCase):
             '  journal = {Example Journal},\n'
             '  year = {2022},\n'
             '  volume = {1},\n'
-            '  pages = {1-10}\n'
+            '  pages = {1-10},\n'
             '}',
             '@article{article2,\n'
             '  author = {Jane Doe},\n'
@@ -37,7 +37,7 @@ class TestBibtexGeneration(unittest.TestCase):
             '  journal = {Another Example Journal},\n'
             '  year = {2023},\n'
             '  volume = {2},\n'
-            '  pages = {11-20}\n'
+            '  pages = {11-20},\n'
             '}'
         ]
 
