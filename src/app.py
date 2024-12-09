@@ -103,7 +103,6 @@ def add_doi_citation():
         doi = request.form.get('doi')
         key = request.form.get('key')
         try:
-            print('here!!!!!!!!!!!')
             doi_search(doi, key)
         except ValueError:
             print('Error: DOI query did not succeed')
