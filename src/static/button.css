@@ -10,13 +10,14 @@
   justify-content: center;
   line-height: 1.75rem;
   padding: .75rem 1.65rem;
-  position: relative;
   text-align: center;
   text-decoration: none #000000 solid;
   text-decoration-thickness: auto;
-  width: 100%;
+  width: 300px;
   max-width: 460px;
-  position: relative;
+  position: absolute;
+  top: 100px;
+  right: 25px;
   cursor: pointer;
   transform: rotate(-2deg);
   user-select: none;

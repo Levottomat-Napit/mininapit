@@ -19,52 +19,52 @@
       </div>
     </form>
   </div>
+  <div class="citation-ordering-container">
+    <div class="ordering glass-effect">
+      <h4>
+        Järjestä viitteet
+      </h4>
+      <form action="/" method="GET">
+        <input type="radio" id="orderkey" name="sort_by" value="key">
+        <label for="sort_bykey">Avain</label><br>
+        <input type="radio" id="orderauthor" name="sort_by" value="author">
+        <label for="orderauthor">Tekijä</label><br>
+        <input type="radio" id="ordertitle" name="sort_by" value="title">
+        <label for="orderkey">Nimi</label><br>
+        <button class="order-button normal-button" type="submit">Järjestä</button>
+      </form>
+    </div>
+    <div class="citations glass-effect">
+      <h2>Viitteet</h2>
+      
+      {% if citations %}
+        {% for citation in citations %}
+          <div class="citation-container">
+            {% if is_bibtex %}
+              <pre>{{ citation.bibtex() }}</pre>
+            {% else %}
+              {{ citation }}
+            {% endif %}
+            {% if not is_bibtex %}
+              <form action="/delete" method="POST" onsubmit="return popup()">
+                <input type="hidden" name="id" value="{{ citation.id }}">
+                <input type="hidden" name="type" value="{{ citation.type_as_string }}">
+                <button class="delete-button" type="submit">Poista</button>
+              </form>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>Ei lisättyjä viitteitä</p>
+      {% endif %}
 
-  <div class="ordering glass-effect">
-    <h4>
-      Järjestä viitteet
-    </h4>
-    <form action="/" method="GET">
-      <input type="radio" id="orderkey" name="sort_by" value="key">
-      <label for="sort_bykey">Avain</label><br>
-      <input type="radio" id="orderauthor" name="sort_by" value="author">
-      <label for="orderauthor">Tekijä</label><br>
-      <input type="radio" id="ordertitle" name="sort_by" value="title">
-      <label for="orderkey">Nimi</label><br>
-      <button class="order-button normal-button" type="submit">Järjestä</button>
-    </form>
-  </div>
-  <div class="citations glass-effect">
-    <h2>Viitteet</h2>
-    
-    {% if citations %}
-      {% for citation in citations %}
-        <div class="citation-container">
-          {% if is_bibtex %}
-            <pre>{{ citation.bibtex() }}</pre>
-          {% else %}
-            {{ citation }}
-          {% endif %}
-          {% if not is_bibtex %}
-            <form action="/delete" method="POST" onsubmit="return popup()">
-              <input type="hidden" name="id" value="{{ citation.id }}">
-              <input type="hidden" name="type" value="{{ citation.type_as_string }}">
-              <button class="delete-button" type="submit">Poista</button>
-            </form>
-          {% endif %}
-        </div>
-      {% endfor %}
-    {% else %}
-      <p>Ei lisättyjä viitteitä</p>
-    {% endif %}
-
-    <script>
-      function popup() {
-        return confirm("Are you sure you want to delete the citation?");
-      }
-    </script>
-  </div>
-
+      <script>
+        function popup() {
+          return confirm("Are you sure you want to delete the citation?");
+        }
+      </script>
+    </div>
+  </div>  
   <div class="toggle-bibtex">
     {% if is_bibtex %}
       <form action="/" method="GET">
