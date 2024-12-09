@@ -9,8 +9,7 @@ def doi_search(doi, data_key):
         with urllib.request.urlopen(f"https://api.crossref.org/works/{doi}") as url:
             data = json.load(url)
     except:
-            print("URL not found")
-            return
+        return False
 
     data_type = data["message"]["type"]
     data_title = data["message"]["title"][0]
@@ -30,13 +29,13 @@ def doi_search(doi, data_key):
             journal = data_journal, 
             year = data_year)
         create_article(article)
+        return True
     elif data_type == "proceedings-article":
         pass
     elif data_type == "book":
         pass
     else:
-        pass
-        
-
+        return False
+    
 # An example search
 doi_search("10.10.1109/TASLP.2019.2950099", "rust")
