@@ -16,7 +16,8 @@ from entities.citation import (
 
 @app.get('/')
 def index():
-    citations = get_citations()
+    sort_by = request.args.get('sort_by', None)
+    citations = get_citations(sort_by=sort_by)
 
     return render_template('index.html', citations=citations)
 
@@ -73,15 +74,16 @@ def book_new():
 
 @app.post('/delete')
 def delete_citation():
-    cid = request.form['id']
-    ctype = request.form['type']
-    delete_citation_by_id(cid, ctype)
+    citation_id = request.form['id']
+    citation_type = request.form['type']
+    delete_citation_by_id(citation_id, citation_type)
 
     return redirect('/')
 
 @app.get('/toggle-bibtex')
 def toggle_bibtex():
-    citations = get_citations()
+    sort_by = request.args.get('sort_by', None)
+    citations = get_citations(sort_by=sort_by)
     return render_template('index.html', citations=citations, is_bibtex=True)
 
 if test_env:

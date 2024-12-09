@@ -4,14 +4,16 @@
 
 {% block body %}
 <div class="new-citation-container glass-effect">
-  <div id="form-selector-container">
+  <div class="form-selector-container">
     <label>Viitteen tyyppi:</label>
     <select id="formSelector">
       <option selected="selected">Valitse viitteen tyyppi</option>
       <option value="article">@article</option>
       <option value="inproceedings">@inproceedings</option>
+      <option value="book">@book</option>
     </select>
-  </div>  
+  </div>
+
   <div id="forms">
     <form id="article" action="/article_new" class="form" method="POST" style="display:none">
       <div class="form-row">
@@ -85,6 +87,81 @@
       </div>
     </form>
   </div>
+
+  <form id="book" action="/book_new" class="form" method="POST" style="display:none">
+    <div>
+      <label for="key">Viitteen nimi:</label>
+      <input type="text" name="key_book" required>
+    </div>
+
+    <div>
+      <label for="author">Kirjoittaja:</label>
+      <input type="text" name="author_book" required>
+    </div>
+
+    <div>
+      <label for="title">Kirjan nimi:</label>
+      <input type="text" name="title_book" required>
+    </div>
+
+    <div>
+      <label for="publisher">Julkaisija:</label>
+      <input type="text" name="publisher_book" required>
+    </div>
+
+    <div>
+      <label for="year">Vuosi:</label>
+      <input type="number" name="year_book" required>
+    </div>
+
+    <div>
+      <label for="volume">Osa:</label>
+      <input type="number" name="volume_book">
+    </div>
+
+    <div>
+      <label for="number">Numero:</label>
+      <input type="text" name="number_book">
+    </div>
+
+    <div>
+      <label for="series">Sarja:</label>
+      <input type="text" name="series_book">
+    </div>
+
+    <div>
+      <label for="address">Osoite:</label>
+      <input type="text" name="address_book">
+    </div>
+
+    <div>
+      <label for="edition">Editio:</label>
+      <input type="text" name="edition_book">
+    </div>
+
+    <div>
+      <label for="month">Kuukausi:</label>
+      <input type="text" name="month_book">
+    </div>
+
+    <div>
+      <label for="note">Kommentti:</label>
+      <input type="text" name="note_book">
+    </div>
+
+    <div>
+      <label for="annote">Huomioita:</label>
+      <input type="text" name="annote_book">
+    </div>
+
+    <div>
+      <button type="submit" id="book">Lisää viite</button>
+    </div>
+  </form>
+</div>
+
+  <a href="/">Palaa etusivulle</a>
+
   <script>
   const formSelector = document.getElementById('formSelector');
   const forms = document.querySelectorAll('.form');
