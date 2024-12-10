@@ -72,7 +72,6 @@ def inproceedings_new():
 
 @app.post('/book_new')
 def book_new():
-
     info = Book(
         key=request.form['key_book'],
         author=request.form['author_book'],
