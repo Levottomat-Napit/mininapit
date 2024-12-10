@@ -95,5 +95,3 @@ def delete_citation_by_id(citation_id, citation_type):
     sql = text(f'DELETE FROM {citation_type} WHERE id = :id')
     db.session.execute(sql, {'id': citation_id})
     db.session.commit()
-
-

@@ -108,5 +108,3 @@ if test_env:
     @app.get('/alive')
     def alive():
         return 'yes'
-
-
