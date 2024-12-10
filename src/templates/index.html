@@ -18,6 +18,9 @@
         <button class="normal-button" type="submit" id="doi">Lisää DOI viite</button>
       </div>
     </form>
+    {% if error %}
+    {{ error }}
+    {% endif %}
   </div>
   <div class="citation-ordering-container">
     <div class="ordering glass-effect">

@@ -7,7 +7,7 @@ def doi_search(doi, data_key):
         with urllib.request.urlopen(f"https://api.crossref.org/works/{doi}") as url:
             data = json.load(url)
     except:
-        return False
+        return "Invalid DOI"
 
     data_type = data["message"]["type"]
     data_title = data["message"]["title"][0]
@@ -37,7 +37,7 @@ def doi_search(doi, data_key):
             journal = data_journal, 
             year = data_year)
         create_article(article)
-        return True
+        return "OK"
     
     elif data_type == "proceedings-article":
         data_booktype = data["message"]["container-title"][0]
@@ -49,7 +49,7 @@ def doi_search(doi, data_key):
             booktitle = data_booktype
         )
         create_inproceedings(inproceeding)
-        return True
+        return "OK"
     
     elif data_type == "book" or data_type == "edited_book":
         data_publisher = data["message"]["publisher"]
@@ -61,10 +61,10 @@ def doi_search(doi, data_key):
             year = data_year
         )
         create_book(book)
-        return True
+        return "OK"
     
     else:
-        return False
+        return "DOI type not supported"
     
 # An example article search
 # doi_search("10.1038/nature12373", "citation_key")

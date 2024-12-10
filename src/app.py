@@ -100,11 +100,11 @@ if test_env:
 @app.post('/doi')
 def add_doi_citation():
     if request.method == "POST":
+        citations = get_citations()
         doi = request.form.get('doi')
         key = request.form.get('key')
-        try:
-            doi_search(doi, key)
-        except ValueError:
-            print('Error: DOI query did not succeed')
-
-    return redirect('/')
+        result = doi_search(doi, key)
+        if result == "OK":
+            return redirect('/')
+        else:
+            return render_template('index.html',citations=citations, error=result)
