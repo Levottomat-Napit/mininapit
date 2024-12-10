@@ -1,4 +1,4 @@
-from util import string_or_empty_string
+from util import generate_bibtex
 
 # pylint: disable=too-many-instance-attributes, redefined-builtin
 #                 maybe fix this later          database uses "id" so can't really do anything
@@ -23,16 +23,7 @@ class Article:
         return f'{self.author}: {self.title} ({self.key})'
 
     def bibtex(self):
-        return (
-            f'@{self.type_as_string}{{{self.key},\n'
-            f'  author = {{{self.author}}},\n'
-            f'  title = {{{self.title}}},\n'
-            f'  journal = {{{self.journal}}},\n'
-            f'  year = {{{self.year}}},\n'
-            f'  volume = {{{string_or_empty_string(self.volume)}}},\n'
-            f'  pages = {{{string_or_empty_string(self.pages)}}}\n'
-            f'}}'
-        )
+        return generate_bibtex(self)
 
 class Inproceedings:
     def __init__(self, *, id=None, **a):
@@ -59,14 +50,7 @@ class Inproceedings:
         return f'{self.author}: {self.title} ({self.key})'
 
     def bibtex(self):
-        return (
-            f'@{self.type_as_string}{{{self.key},\n'
-            f'  author = {{{self.author}}},\n'
-            f'  title = {{{self.title}}},\n'
-            f'  year = {{{self.year}}},\n'
-            f'  booktitle = {{{self.booktitle}}}\n'
-            f'}}'
-        )
+        return generate_bibtex(self)
 
 class Book:
     def __init__(self, *, id=None, **a):
@@ -90,4 +74,4 @@ class Book:
         return f'{self.author}: {self.title} ({self.key})'
 
     def bibtex(self):
-        return 'not implemented'
+        return generate_bibtex(self)
