@@ -101,8 +101,8 @@ if test_env:
 def add_doi_citation():
     if request.method == "POST":
         citations = get_citations()
-        doi = request.form.get('doi')
-        key = request.form.get('key')
+        doi = request.form.get('doi_identifier')
+        key = request.form.get('citation_key')
         result = doi_search(doi, key)
         if result == "OK":
             return redirect('/')

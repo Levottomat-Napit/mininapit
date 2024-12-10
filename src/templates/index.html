@@ -8,14 +8,14 @@
     <form id="doi" action="/doi" class="form" method="POST">
       <div class="form-row">
         <label for="doi">DOI-tunnus:</label>
-        <input type="text" name="doi" required>
+        <input type="text" name="doi_identifier" required>
       </div>
       <div class="form-row">
         <label for="key">Viiteavain:</label>
-        <input type="text" name="key" required>
+        <input type="text" name="citation_key" required>
       </div>
       <div class="form-row">
-        <button class="normal-button" type="submit" id="doi">Lisää DOI viite</button>
+        <button class="normal-button" type="submit" id="doi_submit">Lisää DOI viite</button>
       </div>
     </form>
     {% if error %}
