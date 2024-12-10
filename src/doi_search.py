@@ -51,7 +51,7 @@ def doi_search(doi, data_key):
         create_inproceedings(inproceeding)
         return "OK"
     
-    elif data_type == "book" or data_type == "edited_book":
+    elif data_type == "book" or data_type == "edited-book":
         data_publisher = data["message"]["publisher"]
         book = Book(
             key = data_key,
