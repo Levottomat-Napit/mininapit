@@ -17,7 +17,7 @@ Perform a DOI search with an invalid DOI and get notified for it
     Input Text  doi_identifier  this_is_not_a_doi_identifier
     Input Text  citation_key  InvalidTest
     Click Button  doi_submit
-    Page Should Contain  Invalid DOI
+    Page Should Contain  DOI not found
 
 Perform a DOI search for an unsupported DOI type and get notified for it
     Go to  ${HOME_URL}

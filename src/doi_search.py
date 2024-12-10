@@ -12,7 +12,7 @@ def doi_search(doi, data_key):
         with urllib.request.urlopen(f'https://api.crossref.org/works/{doi}') as url:
             data = json.load(url)
     except urllib.error.HTTPError:
-        return 'Invalid DOI'
+        return 'DOI not found'
 
     data_type = data['message']['type']
     data_title = data['message']['title'][0]
