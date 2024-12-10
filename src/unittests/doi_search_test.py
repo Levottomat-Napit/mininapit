@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from doi_search import doi_search
 import json
+from doi_search import doi_search
 from entities.citation import Article, Inproceedings, Book
 
 class TestDOISearch(unittest.TestCase):
