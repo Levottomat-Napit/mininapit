@@ -1,3 +1,5 @@
+# pylint: disable=line-too-long
+
 import unittest
 from unittest.mock import patch, MagicMock
 import json
@@ -9,7 +11,7 @@ class TestDOISearch(unittest.TestCase):
     def test_doi_not_found(self):
         result = doi_search('invalid-doi', 'citation_key')
         self.assertEqual(result, 'DOI not found')
-    
+
     @patch('doi_search.urllib.request.urlopen')
     @patch('doi_search.create_article')
     def test_doi_search_creates_article(self, mock_create_article, mock_urlopen):
@@ -25,7 +27,7 @@ class TestDOISearch(unittest.TestCase):
                 'container-title': ['Great Journal']
             }
         }
-        
+
         mock_urlopen.return_value.__enter__.return_value = MagicMock()
         mock_urlopen.return_value.__enter__.return_value.read.return_value = json.dumps(mock_response).encode('utf-8')
 
@@ -59,7 +61,7 @@ class TestDOISearch(unittest.TestCase):
                 'container-title': ['Great Conference']
             }
         }
-        
+
         mock_urlopen.return_value.__enter__.return_value = MagicMock()
         mock_urlopen.return_value.__enter__.return_value.read.return_value = json.dumps(mock_response).encode('utf-8')
 
@@ -92,7 +94,7 @@ class TestDOISearch(unittest.TestCase):
                 'publisher': 'Great Publisher'
             }
         }
-        
+
         mock_urlopen.return_value.__enter__.return_value = MagicMock()
         mock_urlopen.return_value.__enter__.return_value.read.return_value = json.dumps(mock_response).encode('utf-8')
 
