@@ -86,6 +86,16 @@ def toggle_bibtex():
     citations = get_citations(sort_by=sort_by)
     return render_template('index.html', citations=citations, is_bibtex=True)
 
+@app.get('/btxtxt')
+def bibtex_text():
+    citations = get_citations()
+    btx = ''
+
+    for x in citations:
+        btx += f'{x.bibtex()}\n\n'
+
+    return btx, {'content-type': 'text/plain; charset=utf-8'}
+
 if test_env:
     @app.get('/reset-db')
     def reset_database():
