@@ -60,8 +60,8 @@ def setup_db():
     '  key TEXT UNIQUE NOT NULL,'
     '  author TEXT NOT NULL,'
     '  title TEXT NOT NULL,'
-    '  year INT NOT NULL,'
-    '  booktitle TEXT NOT NULL,'
+    '  year INT,'
+    '  booktitle TEXT,'
     '  editor TEXT,'
     '  volume TEXT,'
     '  number TEXT,' # deliberately TEXT

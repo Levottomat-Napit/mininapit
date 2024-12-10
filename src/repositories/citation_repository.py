@@ -39,16 +39,35 @@ def create_article(info: Article):
     db.session.commit()
 
 def create_inproceedings(info: Inproceedings):
-    sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle)
-             VALUES (:key, :author, :title, :year, :booktitle)''')
+    sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle, editor,
+                volume, number, series, pages, month, address, organization, publisher, note, annote)
+             VALUES (:key, :author, :title, :year, :booktitle, :editor, :volume, :number,
+                :series, :pages, :month, :address, :organization, :publisher, :note, :annote)''')
+
+    if info.year == '':
+        year_value = None
+    else:
+        year_value = info.year
 
     db.session.execute(sql, {
         'key': info.key,
         'author': info.author,
         'title': info.title,
-        'year': info.year,
-        'booktitle': info.booktitle
+        'year': year_value,
+        'booktitle': info.booktitle,
+        'editor': info.editor,
+        'volume': info.volume,
+        'number': info.number,
+        'series': info.series,
+        'pages': info.pages,
+        'month': info.month,
+        'address': info.address,
+        'organization': info.organization,
+        'publisher': info.publisher,
+        'note': info.note,
+        'annote': info.annote
     })
+
     db.session.commit()
 
 def create_book(info: Book):
@@ -76,3 +95,25 @@ def delete_citation_by_id(citation_id, citation_type):
     sql = text(f'DELETE FROM {citation_type} WHERE id = :id')
     db.session.execute(sql, {'id': citation_id})
     db.session.commit()
+
+def sort_citations(sort_by):
+
+    fields = ['year', 'author', 'title']
+
+    if sort_by not in fields:
+        sort_by = 'year'
+
+    sql = text(f'SELECT * FROM articles ORDER BY {sort_by}')
+    articles = db.session.execute(sql).mappings().fetchall()
+
+    sql = text(f'SELECT * FROM inproceedings ORDER BY {sort_by}')
+    inproceedings = db.session.execute(sql).mappings().fetchall()
+
+    sql = text(f'SELECT * FROM books ORDER BY {sort_by}')
+    books = db.session.execute(sql).mappings().fetchall()
+
+    return (
+        [Article(**art) for art in articles] +
+        [Inproceedings(**ip) for ip in inproceedings] +
+        [Book(**bk) for bk in books]
+    )
