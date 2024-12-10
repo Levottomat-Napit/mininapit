@@ -29,16 +29,33 @@ def create_article(info: Article):
     db.session.commit()
 
 def create_inproceedings(info: Inproceedings):
-    sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle)
-             VALUES (:key, :author, :title, :year, :booktitle)''')
+    sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle, editor, volume, number, series, pages, month, address, organization, publisher, note, annote)
+             VALUES (:key, :author, :title, :year, :booktitle, :editor, :volume, :number, :series, :pages, :month, :address, :organization, :publisher, :note, :annote)''')
+
+    if info.year == "":
+        year_value = None
+    else:
+        year_value = info.year
 
     db.session.execute(sql, {
         'key': info.key,
         'author': info.author,
         'title': info.title,
-        'year': info.year,
-        'booktitle': info.booktitle
+        'year': year_value,
+        'booktitle': info.booktitle,
+        'editor': info.editor,
+        'volume': info.volume,
+        'number': info.number,
+        'series': info.series,
+        'pages': info.pages,
+        'month': info.month,
+        'address': info.address,
+        'organization': info.organization,
+        'publisher': info.publisher,
+        'note': info.note,
+        'annote': info.annote
     })
+    
     db.session.commit()
 
 def create_book(info: Book):
