@@ -16,7 +16,7 @@ from entities.citation import (
 
 @app.get('/')
 def index():
-    sort_by = request.args.get('sort_by', None)
+    sort_by = request.args.get('sort_by')
     citations = get_citations(sort_by=sort_by)
 
     return render_template('index.html', citations=citations)
