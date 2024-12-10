@@ -77,42 +77,92 @@
     </form>
 
     <form id="inproceedings" action="/inproceedings_new" class="form" method="POST" style="display:none">
-      <div>
+  
+      <div class="form-row">
         <label for="key">Viitteen nimi:</label>
         <input type="text" name="key_inproceedings" required>
       </div>
-  
-      <div>
+    
+      <div class="form-row">
         <label for="author">Kirjoittaja:</label>
         <input type="text" name="author_inproceedings" required>
       </div>
-  
-      <div>
+    
+      <div class="form-row">
         <label for="title">Otsikko:</label>
         <input type="text" name="title_inproceedings" required>
       </div>
-  
-      <div>
+    
+      <div class="form-row">
+        <label for="booktitle">Kirjan nimi:</label>
+        <input type="text" name="booktitle_inproceedings" required>
+      </div>
+    
+      <div class="form-row">
         <label for="year">Vuosi:</label>
         <input type="number" name="year_inproceedings" required>
       </div>
-  
-      <div>
-        <label for="volume">Kirjan nimi:</label>
-        <input type="text" name="booktitle_inproceedings">
+    
+      <div class="form-row">
+        <label for="editor">Toimittaja:</label>
+        <input type="text" name="editor_inproceedings">
       </div>
-  
-      <div>
-        <button type="submit" id="inproceedings">Lisää viite</button>
+    
+      <div class="form-row">
+        <label for="volume">Vuosikerta:</label>
+        <input type="text" name="volume_inproceedings">
       </div>
-    </form>
-  </div>
-  
+    
+      <div class="form-row">
+        <label for="number">Numero:</label>
+        <input type="text" name="number_inproceedings">
+      </div>
+    
+      <div class="form-row">
+        <label for="series">Sarja:</label>
+        <input type="text" name="series_inproceedings">
+      </div>
+    
+      <div class="form-row">
+        <label for="pages">Sivut:</label>
+        <input type="text" name="pages_inproceedings">
+      </div>
+    
+      <div class="form-row">
+        <label for="month">Kuukausi:</label>
+        <input type="number" name="month_inproceedings" min="1" max="12">
+      </div>
+    
+      <div class="form-row">
+        <label for="address">Osoite:</label>
+        <input type="text" name="address_inproceedings">
+      </div>
+    
+      <div class="form-row">
+        <label for="organization">Organisaatio:</label>
+        <input type="text" name="organization_inproceedings">
+      </div>
+    
+      <div class="form-row">
+        <label for="publisher">Julkaisija:</label>
+        <input type="text" name="publisher_inproceedings">
+      </div>
+    
+      <div class="form-row">
+        <label for="note">Muistiinpano:</label>
+        <input type="text" name="note_inproceedings">
+      </div>
+    
+      <div class="form-row">
+        <label for="annote">Lisähuomautus:</label>
+        <input type="text" name="annote_inproceedings">
+      </div>
+    
       <div class="form-row">
         <button class="normal-button" type="submit" id="inproceedings">Lisää viite</button>
       </div>
+    
     </form>
-  </div>
 
   <form id="book" action="/book_new" class="form" method="POST" style="display:none">
     <div>

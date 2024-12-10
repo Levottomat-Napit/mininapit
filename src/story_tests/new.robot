@@ -5,18 +5,24 @@ Suite Teardown   Close Browser
 Test Setup       reset db
 
 ** Variables ***
-${key}     testi
-${author}     mikko
-${title}     tutkimus
-${journal}     lehti
-${year}     2000
-${volume}     15
-${number}     71
-${pages}     20
-${month}     12
-${note}     mahtava 
-${annote}     lol
-${booktitle}     kirjannimi
+${key}             testi
+${key_inproc}      testi2
+${author}          mikko
+${title}           tutkimus
+${journal}         lehti
+${year}            2000
+${volume}          15
+${number}          71
+${pages}           20
+${month}           12
+${note}            mahtava
+${annote}          lol
+${booktitle}       kirjannimi
+${editor}          editori
+${series}          sarja
+${address}         osoite
+${organization}    organisaatio
+${publisher}       julkaisija
 ${bibtex}    @article{testi,\n \ author = {mikko},\n \ title = {tutkimus},\n \ journal = {lehti},\n \ year = {2000},\n \ volume = {15},\n \ pages = {20}\n}
 
 *** Test Cases ***
@@ -40,11 +46,22 @@ Submit and check for article citation
 Submit and check for inproceedings citation
     GO TO  ${NEW_URL}
     Select From List By Value  formSelector  inproceedings
-    Input Text  key_inproceedings  ${key}2
+    Input Text  key_inproceedings  ${key_inproc}
     Input Text  author_inproceedings  ${author}
     Input Text  title_inproceedings  ${title}
-    Input Text  year_inproceedings  ${year}
     Input Text  booktitle_inproceedings  ${booktitle}
+    Input Text  year_inproceedings  ${year}
+    Input Text  editor_inproceedings  ${editor}
+    Input Text  volume_inproceedings  ${volume}
+    Input Text  number_inproceedings  ${number}
+    Input Text  series_inproceedings  ${series}
+    Input Text  pages_inproceedings  ${pages}
+    Input Text  month_inproceedings  ${month}
+    Input Text  address_inproceedings  ${address}
+    Input Text  organization_inproceedings  ${organization}
+    Input Text  publisher_inproceedings  ${publisher}
+    Input Text  note_inproceedings  ${note}
+    Input Text  annote_inproceedings  ${annote}
     Click Button  inproceedings
     Page Should Contain   mikko: tutkimus (testi2)
 
