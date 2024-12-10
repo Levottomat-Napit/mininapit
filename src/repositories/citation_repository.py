@@ -29,10 +29,12 @@ def create_article(info: Article):
     db.session.commit()
 
 def create_inproceedings(info: Inproceedings):
-    sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle, editor, volume, number, series, pages, month, address, organization, publisher, note, annote)
-             VALUES (:key, :author, :title, :year, :booktitle, :editor, :volume, :number, :series, :pages, :month, :address, :organization, :publisher, :note, :annote)''')
+    sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle, editor,
+                volume, number, series, pages, month, address, organization, publisher, note, annote)
+             VALUES (:key, :author, :title, :year, :booktitle, :editor, :volume, :number,
+                :series, :pages, :month, :address, :organization, :publisher, :note, :annote)''')
 
-    if info.year == "":
+    if info.year == '':
         year_value = None
     else:
         year_value = info.year
@@ -55,7 +57,7 @@ def create_inproceedings(info: Inproceedings):
         'note': info.note,
         'annote': info.annote
     })
-    
+
     db.session.commit()
 
 def create_book(info: Book):
@@ -89,7 +91,7 @@ def sort_citations(sort_by):
     fields = ['year', 'author', 'title']
 
     if sort_by not in fields:
-        sort_by = 'year'  
+        sort_by = 'year'
 
     sql = text(f'SELECT * FROM articles ORDER BY {sort_by}')
     articles = db.session.execute(sql).mappings().fetchall()

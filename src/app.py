@@ -34,11 +34,11 @@ def article_new():
         journal=request.form['journal_article'],
         year=request.form['year_article'],
         volume=request.form.get('volume_article'),
-        number=request.form.get('number_article'),  
+        number=request.form.get('number_article'),
         pages=request.form.get('pages_article'),
-        month=request.form.get('month_article'),    
-        note=request.form.get('note_article'),     
-        annote=request.form.get('annote_article')   
+        month=request.form.get('month_article'),
+        note=request.form.get('note_article'),
+        annote=request.form.get('annote_article')
     )
 
     create_article(info)

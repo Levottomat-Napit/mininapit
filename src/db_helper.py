@@ -68,7 +68,6 @@ def setup_db():
     '  series TEXT,'
     '  pages TEXT,'
     '  month TEXT,'
-    
     '  address TEXT,'
     '  organization TEXT,'
     '  publisher TEXT,'
