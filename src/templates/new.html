@@ -16,71 +16,97 @@
 
   <div id="forms">
     <form id="article" action="/article_new" class="form" method="POST" style="display:none">
-      <div class="form-row">
+      <div>
         <label for="key">Viitteen nimi:</label>
         <input type="text" name="key_article" required>
       </div>
 
-      <div class="form-row">
+      <div>
         <label for="author">Kirjoittaja:</label>
         <input type="text" name="author_article" required>
       </div>
 
-      <div class="form-row">
+      <div>
         <label for="title">Otsikko:</label>
         <input type="text" name="title_article" required>
       </div>
 
-      <div class="form-row">
+      <div>
         <label for="journal">Julkaisupaikka:</label>
         <input type="text" name="journal_article" required>
       </div>
 
-      <div class="form-row">
+      <div>
         <label for="year">Vuosi:</label>
         <input type="number" name="year_article" required>
       </div>
 
-      <div class="form-row">
+      <div>
         <label for="volume">Volyymi:</label>
         <input type="text" name="volume_article">
       </div>
 
-      <div class="form-row">
+      <div>
+        <label for="number">Numero:</label>
+        <input type="text" name="number_article">
+      </div>
+
+      <div>
         <label for="pages">Sivut:</label>
         <input type="text" name="pages_article">
       </div>
 
-      <div class="form-row">
-        <button class="normal-button" type="submit" id="article">Lisää viite</button>
+      <div>
+        <label for="month">Kuukausi:</label>
+        <input type="text" name="month_article">
+      </div>
+
+      <div>
+        <label for="note">Lisäys:</label>
+        <input type="text" name="note_article">
+      </div>
+
+      <div>
+        <label for="annote">Huomautus:</label>
+        <input type="text" name="annote_article">
+      </div>
+
+      <div>
+        <button type="submit" id="article">Lisää viite</button>
       </div>
     </form>
 
     <form id="inproceedings" action="/inproceedings_new" class="form" method="POST" style="display:none">
-      <div class="form-row">
+      <div>
         <label for="key">Viitteen nimi:</label>
         <input type="text" name="key_inproceedings" required>
       </div>
   
-      <div class="form-row">
+      <div>
         <label for="author">Kirjoittaja:</label>
         <input type="text" name="author_inproceedings" required>
       </div>
   
-      <div class="form-row">
+      <div>
         <label for="title">Otsikko:</label>
         <input type="text" name="title_inproceedings" required>
       </div>
   
-      <div class="form-row">
+      <div>
         <label for="year">Vuosi:</label>
         <input type="number" name="year_inproceedings" required>
       </div>
   
-      <div class="form-row">
+      <div>
         <label for="volume">Kirjan nimi:</label>
         <input type="text" name="booktitle_inproceedings">
       </div>
+  
+      <div>
+        <button type="submit" id="inproceedings">Lisää viite</button>
+      </div>
+    </form>
+  </div>
   
       <div class="form-row">
         <button class="normal-button" type="submit" id="inproceedings">Lisää viite</button>
