@@ -42,6 +42,14 @@ jobs:
         run: poetry run pylint src/
       - name: Run unit tests
         run: poetry run pytest src/unittests
+      - name: Run coverage
+        run: poetry run coverage run --branch -m pytest
+      - name: Create coverage report
+        run: poetry run coverage xml
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@master
       - run: |
