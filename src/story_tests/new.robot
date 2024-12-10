@@ -56,3 +56,14 @@ Submit and check that the toggle BibTeX button works
     Page Should Contain  ${bibtex}
     Click Button  Normaalit viitteet
     Page Should Contain   mikko: tutkimus (testi)
+
+Submit and check for book citation with required fields
+    GO TO  ${NEW_URL}
+    Select From List By Value  formSelector  book
+    Input Text  key_book  ${key}
+    Input Text  author_book  ${author}
+    Input Text  title_book  kirja
+    Input Text  publisher_book  julkaisija
+    Input Text  year_book  ${year}
+    Click Button  book
+    Page Should Contain   mikko: kirja (testi)
