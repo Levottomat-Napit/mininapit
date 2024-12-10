@@ -66,12 +66,3 @@ def doi_search(doi, data_key):
         return 'OK'
 
     return 'DOI type not supported'
-
-# An example article search
-# doi_search('10.1038/nature12373', 'citation_key')
-
-# An example inproceeding search
-# doi_search('10.10.1109/TASLP.2019.2950099', 'citation_key')
-
-# An example book search
-# doi_search('10.1145/3674127', 'citation_key')
