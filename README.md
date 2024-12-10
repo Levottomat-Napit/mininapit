@@ -2,6 +2,8 @@
 
 **aka Bibtex-apuri**
 
+[![codecov](https://codecov.io/gh/Levottomat-Napit/mininapit/graph/badge.svg?token=0G3ER0GH1O)](https://codecov.io/gh/Levottomat-Napit/mininapit)
+
 The idea of this project is to practice Scrum framework while trying to produce an app that automatically creates BibTeX files from the references in the database.
 
 ## Running

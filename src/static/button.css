@@ -51,6 +51,11 @@
   }
 }
 
+.toggle-bibtex a {
+  background-color: paleturquoise;
+  padding: 3px;
+}
+
 .delete-button {
   border: none;
   color: white;

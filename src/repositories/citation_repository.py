@@ -36,19 +36,34 @@ def create_article(info: Article):
         'volume': info.volume,
         'pages': info.pages
     })
+
     db.session.commit()
 
 def create_inproceedings(info: Inproceedings):
-    sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle)
-             VALUES (:key, :author, :title, :year, :booktitle)''')
+    sql = text('''INSERT INTO inproceedings (key, author, title, year, booktitle, editor,
+                volume, number, series, pages, month, address, organization, publisher, note, annote)
+             VALUES (:key, :author, :title, :year, :booktitle, :editor, :volume, :number,
+                :series, :pages, :month, :address, :organization, :publisher, :note, :annote)''')
 
     db.session.execute(sql, {
         'key': info.key,
         'author': info.author,
         'title': info.title,
         'year': info.year,
-        'booktitle': info.booktitle
+        'booktitle': info.booktitle,
+        'editor': info.editor,
+        'volume': info.volume,
+        'number': info.number,
+        'series': info.series,
+        'pages': info.pages,
+        'month': info.month,
+        'address': info.address,
+        'organization': info.organization,
+        'publisher': info.publisher,
+        'note': info.note,
+        'annote': info.annote
     })
+
     db.session.commit()
 
 def create_book(info: Book):
@@ -62,6 +77,7 @@ def create_book(info: Book):
         'publisher': info.publisher,
         'year': info.year
     })
+
     db.session.commit()
 
 def delete_citation_by_id(citation_id, citation_type):

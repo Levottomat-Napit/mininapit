@@ -17,7 +17,7 @@ from doi_search import doi_search
 
 @app.get('/')
 def index():
-    sort_by = request.args.get('sort_by', None)
+    sort_by = request.args.get('sort_by')
     citations = get_citations(sort_by=sort_by)
 
     return render_template('index.html', citations=citations)
@@ -28,7 +28,6 @@ def new():
 
 @app.post('/article_new')
 def article_new():
-
     info = Article(
         key=request.form['key_article'],
         author=request.form['author_article'],
@@ -36,7 +35,11 @@ def article_new():
         journal=request.form['journal_article'],
         year=request.form['year_article'],
         volume=request.form.get('volume_article'),
-        pages=request.form.get('pages_article')
+        number=request.form.get('number_article'),
+        pages=request.form.get('pages_article'),
+        month=request.form.get('month_article'),
+        note=request.form.get('note_article'),
+        annote=request.form.get('annote_article')
     )
 
     create_article(info)
@@ -45,13 +48,23 @@ def article_new():
 
 @app.post('/inproceedings_new')
 def inproceedings_new():
-
     info = Inproceedings(
         key=request.form['key_inproceedings'],
         author=request.form['author_inproceedings'],
         title=request.form['title_inproceedings'],
         year=request.form['year_inproceedings'],
-        booktitle=request.form['booktitle_inproceedings']
+        booktitle=request.form['booktitle_inproceedings'],
+        editor=request.form.get('editor_inproceedings'),
+        volume=request.form.get('volume_inproceedings'),
+        number=request.form.get('number_inproceedings'),
+        series=request.form.get('series_inproceedings'),
+        pages=request.form.get('pages_inproceedings'),
+        month=request.form.get('month_inproceedings'),
+        address=request.form.get('address_inproceedings'),
+        organization=request.form.get('organization_inproceedings'),
+        publisher=request.form.get('publisher_inproceedings'),
+        note=request.form.get('note_inproceedings'),
+        annote=request.form.get('annote_inproceedings')
     )
 
     create_inproceedings(info)
@@ -60,7 +73,6 @@ def inproceedings_new():
 
 @app.post('/book_new')
 def book_new():
-
     info = Book(
         key=request.form['key_book'],
         author=request.form['author_book'],
@@ -86,6 +98,16 @@ def toggle_bibtex():
     sort_by = request.args.get('sort_by', None)
     citations = get_citations(sort_by=sort_by)
     return render_template('index.html', citations=citations, is_bibtex=True)
+
+@app.get('/btxtxt')
+def bibtex_text():
+    citations = get_citations()
+    btx = ''
+
+    for x in citations:
+        btx += f'{x.bibtex()}\n\n'
+
+    return btx, {'content-type': 'text/plain; charset=utf-8'}
 
 if test_env:
     @app.get('/reset-db')
