@@ -36,6 +36,7 @@ def create_article(info: Article):
         'volume': info.volume,
         'pages': info.pages
     })
+
     db.session.commit()
 
 def create_inproceedings(info: Inproceedings):
@@ -44,16 +45,11 @@ def create_inproceedings(info: Inproceedings):
              VALUES (:key, :author, :title, :year, :booktitle, :editor, :volume, :number,
                 :series, :pages, :month, :address, :organization, :publisher, :note, :annote)''')
 
-    if info.year == '':
-        year_value = None
-    else:
-        year_value = info.year
-
     db.session.execute(sql, {
         'key': info.key,
         'author': info.author,
         'title': info.title,
-        'year': year_value,
+        'year': info.year,
         'booktitle': info.booktitle,
         'editor': info.editor,
         'volume': info.volume,
@@ -81,6 +77,7 @@ def create_book(info: Book):
         'publisher': info.publisher,
         'year': info.year
     })
+
     db.session.commit()
 
 def delete_citation_by_id(citation_id, citation_type):
