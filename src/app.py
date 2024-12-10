@@ -118,15 +118,13 @@ if test_env:
     @app.get('/alive')
     def alive():
         return 'yes'
-    
+
 @app.post('/doi')
 def add_doi_citation():
-    if request.method == "POST":
-        citations = get_citations()
-        doi = request.form.get('doi_identifier')
-        key = request.form.get('citation_key')
-        result = doi_search(doi, key)
-        if result == "OK":
-            return redirect('/')
-        else:
-            return render_template('index.html',citations=citations, error=result)
+    citations = get_citations()
+    doi = request.form.get('doi_identifier')
+    key = request.form.get('citation_key')
+    result = doi_search(doi, key)
+    if result == 'OK':
+        return redirect('/')
+    return render_template('index.html',citations=citations, error=result)

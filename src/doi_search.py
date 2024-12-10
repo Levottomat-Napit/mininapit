@@ -1,23 +1,28 @@
-import urllib.request, json
-from entities.citation import Article, Inproceedings, Book
-from repositories.citation_repository import create_article, create_inproceedings, create_book
+import urllib.request
+import json
+from entities.citation import (Article,
+                               Inproceedings,
+                               Book)
+from repositories.citation_repository import (create_article,
+                                              create_inproceedings,
+                                              create_book)
 
 def doi_search(doi, data_key):
     try:
-        with urllib.request.urlopen(f"https://api.crossref.org/works/{doi}") as url:
+        with urllib.request.urlopen(f'https://api.crossref.org/works/{doi}') as url:
             data = json.load(url)
-    except:
-        return "Invalid DOI"
+    except urllib.error.HTTPError:
+        return 'Invalid DOI'
 
-    data_type = data["message"]["type"]
-    data_title = data["message"]["title"][0]
+    data_type = data['message']['type']
+    data_title = data['message']['title'][0]
     data_year = data['message']['published']['date-parts'][0][0]
 
     author = None
 
     if 'author' in data['message']:
         if isinstance(data['message']['author'], list):
-            authors = [author['given'] + ' ' + author['family'] for author in data['message']['author']]
+            authors = [author['given']+' '+author['family'] for author in data['message']['author']]
             author = ', '.join(authors)
         else:
             author = data['message']['author']
@@ -28,49 +33,45 @@ def doi_search(doi, data_key):
         else:
             author = editors
 
-    if data_type == "journal-article":
-        data_journal = data["message"]["container-title"][0]
-        article = Article(
-            key = data_key, 
-            author = author, 
-            title = data_title, 
-            journal = data_journal, 
-            year = data_year)
-        create_article(article)
-        return "OK"
-    
-    elif data_type == "proceedings-article":
-        data_booktype = data["message"]["container-title"][0]
-        inproceeding = Inproceedings(
+    if data_type == 'journal-article':
+        data_journal = data['message']['container-title'][0]
+        create_article(Article(
+            key = data_key,
+            author = author,
+            title = data_title,
+            journal = data_journal,
+            year = data_year))
+        return 'OK'
+
+    if data_type == 'proceedings-article':
+        data_booktype = data['message']['container-title'][0]
+        create_inproceedings(Inproceedings(
             key = data_key,
             author = author,
             title = data_title,
             year = data_year,
             booktitle = data_booktype
-        )
-        create_inproceedings(inproceeding)
-        return "OK"
-    
-    elif data_type == "book" or data_type == "edited-book":
-        data_publisher = data["message"]["publisher"]
-        book = Book(
+        ))
+        return 'OK'
+
+    if data_type in ('book', 'edited-book'):
+        data_publisher = data['message']['publisher']
+        create_book(Book(
             key = data_key,
             author = author,
             title = data_title,
             publisher = data_publisher,
             year = data_year
-        )
-        create_book(book)
-        return "OK"
-    
-    else:
-        return "DOI type not supported"
-    
+        ))
+        return 'OK'
+
+    return 'DOI type not supported'
+
 # An example article search
-# doi_search("10.1038/nature12373", "citation_key")
+# doi_search('10.1038/nature12373', 'citation_key')
 
 # An example inproceeding search
-# doi_search("10.10.1109/TASLP.2019.2950099", "citation_key")
+# doi_search('10.10.1109/TASLP.2019.2950099', 'citation_key')
 
 # An example book search
-# doi_search("10.1145/3674127", "citation_key")
+# doi_search('10.1145/3674127', 'citation_key')
