@@ -5,8 +5,7 @@ from repositories.citation_repository import (
     create_article,
     create_inproceedings,
     create_book,
-    delete_citation_by_id,
-    sort_citations
+    delete_citation_by_id
 )
 from config import app, test_env
 from entities.citation import (
@@ -108,9 +107,4 @@ if test_env:
     def alive():
         return 'yes'
 
-@app.post('/sort')
-def sort():
-    sort_by = request.form['sort_by']
-    citations = sort_citations(sort_by)
 
-    return render_template('index.html', citations=citations)
