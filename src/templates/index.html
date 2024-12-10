@@ -67,23 +67,22 @@
         }
       </script>
     </div>
-  </div>  
-  <div class="toggle-bibtex">
-    {% if is_bibtex %}
-      <form action="/" method="GET">
-        <button type="submit">Normaalit viitteet</button>
-      </form>
-    {% else %}
-      <form action="/toggle-bibtex" method="GET">
-        <button type="submit">BibTeX viitteet</button>
-      </form>
-    {% endif %}
-
   </div>
-    <br><br>
-    <a href="/btxtxt" target="_blank">Tarkastele bibtexiä tekstimuodossa</a>
-    <br><br>
-    <a href="/btxtxt" download="mun_bibtex.bib">Lataa bibtex</a>
+    <div class="big-buttons">
+      <div class="toggle-bibtex">
+        {% if is_bibtex %}
+        <form action="/" method="GET">
+          <button class="flashy-button" type="submit">Normaalit viitteet</button>
+        </form>
+        {% else %}
+        <form action="/toggle-bibtex" method="GET">
+          <button class="flashy-button" type="submit">BibTeX viitteet</button>
+        </form>
+        {% endif %}
+      </div>
+      <a class="flashy-button" href="/btxtxt" target="_blank">BibTeX uuteen ikkunaan</a>
+      <a class="flashy-button" href="/btxtxt" download="mun_bibtex.bib">Lataa BibTeX</a>
+    </div>
   </div>
 
 </div>
