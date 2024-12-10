@@ -66,3 +66,25 @@ def delete_citation_by_id(cid, ctype):
     sql = text(f'DELETE FROM {ctype} WHERE id = :id')
     db.session.execute(sql, {'id': cid})
     db.session.commit()
+
+def sort_citations(sort_by):
+
+    fields = ['year', 'author', 'title']
+
+    if sort_by not in fields:
+        sort_by = 'year'  
+
+    sql = text(f'SELECT * FROM articles ORDER BY {sort_by}')
+    articles = db.session.execute(sql).mappings().fetchall()
+
+    sql = text(f'SELECT * FROM inproceedings ORDER BY {sort_by}')
+    inproceedings = db.session.execute(sql).mappings().fetchall()
+
+    sql = text(f'SELECT * FROM books ORDER BY {sort_by}')
+    books = db.session.execute(sql).mappings().fetchall()
+
+    return (
+        [Article(**art) for art in articles] +
+        [Inproceedings(**ip) for ip in inproceedings] +
+        [Book(**bk) for bk in books]
+    )

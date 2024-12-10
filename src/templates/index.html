@@ -28,6 +28,20 @@
       <p>Ei lisättyjä viitteitä</p>
     {% endif %}
 
+  <form id="sort" action="/sort" method="POST" class="new-citation-container glass-effect">
+    <div class="form-selector-container">
+      <label for="sort_by">Järjestä viitteet:</label>
+      <select name="sort_by" id="sort_by" required>
+        <option selected="selected" disabled>Valitse järjestys</option>
+        <option value="year">Vuosi</option>
+        <option value="author">Kirjoittaja</option>
+        <option value="title">Otsikko</option>
+      </select>
+      <button class="normal-button" type="submit">Järjestä</button>
+    </div>
+  </form>
+    
+
     <script>
       function popup() {
         return confirm("Are you sure you want to delete the citation?");
