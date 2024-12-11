@@ -1,34 +1,32 @@
-.toggle-bibtex button {
+.flashy-button {
   background-color: #FFD700;
   border: 0 solid #E5E7EB;
   box-sizing: border-box;
   color: #000000;
-  display: flex;
-  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  display: inline-flex; /* Keep this to allow width adjustment */
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 700;
   justify-content: center;
   line-height: 1.75rem;
-  padding: .75rem 1.65rem;
-  position: relative;
+  padding: .75rem 1.65rem; /* You can adjust padding as needed */
   text-align: center;
-  text-decoration: none #000000 solid;
-  text-decoration-thickness: auto;
-  width: 100%;
-  max-width: 460px;
-  position: relative;
+  text-decoration: none; /* Remove underline from links */
+  max-width: none; /* Ensure no max-width is applied */
+  position: relative; /* Change to relative for links */
   cursor: pointer;
   transform: rotate(-2deg);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  flex: none; /* Prevent buttons from stretching */
 }
 
-.toggle-bibtex button:focus {
+.flashy-button:focus {
   outline: 0;
 }
 
-.toggle-bibtex button:after {
+.flashy-button:after {
   content: '';
   position: absolute;
   border: 1px solid #000000;
@@ -38,21 +36,16 @@
   height: calc(100% - 1px);
 }
 
-.toggle-bibtex button:hover:after {
+.flashy-button:hover:after {
   bottom: 2px;
   left: 2px;
 }
 
 @media (min-width: 768px) {
-  .toggle-bibtex button {
-    padding: .75rem 3rem;
+  .flashy-button {
+    padding: .75rem 3rem; /* You can adjust padding for larger screens */
     font-size: 1.25rem;
   }
-}
-
-.toggle-bibtex a {
-  background-color: paleturquoise;
-  padding: 3px;
 }
 
 .delete-button {
@@ -102,5 +95,39 @@
 
 .normal-button:hover {
   background-color: var(--secondary-color);
+  color: white;
+}
+
+.big-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  height: 200px;
+  width: 250px;
+  position: absolute;
+  top: 90px;
+  right: 0px;
+}
+
+.big-buttons form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.big-buttons a{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.big-buttons > :nth-child(1) button {
+  background-color: #00BFFF;
+}
+
+.big-buttons > :nth-child(2) {
+  background-color: #ff2626;
   color: white;
 }
