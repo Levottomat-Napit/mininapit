@@ -31,3 +31,6 @@ reset db
 Open Browser And Reset DB
     Open And Configure Browser
     reset db
+
+go home 
+    go to  ${HOME_URL}
