@@ -23,8 +23,8 @@ Add And Check Multiple Article Citations
         Add And Check For Article Citation    ${key}    ${author}    ${title}    ${journal}    ${year}
     END
 
-Order by key
-    Select Radio Button    sort_by    key
+Order by year
+    Select Radio Button    sort_by    year
     Click Button    Järjestä
     Click Button  BibTeX viitteet
     Page Should Contain  ${bibtex1}  
