@@ -1,11 +1,15 @@
 import urllib.request
 import json
-from entities.citation import (Article,
-                               Inproceedings,
-                               Book)
-from repositories.citation_repository import (create_article,
-                                              create_inproceedings,
-                                              create_book)
+from entities.citation import (
+    Article,
+    Inproceedings,
+    Book
+)
+from repositories.citation_repository import (
+    create_article,
+    create_inproceedings,
+    create_book
+)
 
 def doi_search(doi, data_key):
     try:
@@ -22,7 +26,8 @@ def doi_search(doi, data_key):
 
     if 'author' in data['message']:
         if isinstance(data['message']['author'], list):
-            authors = [author['given']+' '+author['family'] for author in data['message']['author']]
+            authors = \
+                [author['given'] + ' ' + author['family'] for author in data['message']['author']]
             author = ', '.join(authors)
         else:
             author = data['message']['author']
@@ -40,7 +45,9 @@ def doi_search(doi, data_key):
             author = author,
             title = data_title,
             journal = data_journal,
-            year = data_year))
+            year = data_year
+        ))
+
         return 'OK'
 
     if data_type == 'proceedings-article':
@@ -52,6 +59,7 @@ def doi_search(doi, data_key):
             year = data_year,
             booktitle = data_booktype
         ))
+
         return 'OK'
 
     if data_type in ('book', 'edited-book'):
@@ -63,6 +71,7 @@ def doi_search(doi, data_key):
             publisher = data_publisher,
             year = data_year
         ))
+
         return 'OK'
 
     return 'DOI type not supported'

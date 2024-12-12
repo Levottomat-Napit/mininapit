@@ -12,6 +12,7 @@ def get_citations(sort_by=None):
         [Inproceedings(**inproceeding) for inproceeding in inproceedings] +
         [Book(**book) for book in books]
     )
+
     if sort_by is None:
         pass
     elif sort_by == 'year':
