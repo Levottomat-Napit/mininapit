@@ -1,5 +1,3 @@
-# pylint: disable=line-too-long
-
 import unittest
 from unittest.mock import patch, MagicMock
 import json
@@ -29,7 +27,8 @@ class TestDOISearch(unittest.TestCase):
         }
 
         mock_urlopen.return_value.__enter__.return_value = MagicMock()
-        mock_urlopen.return_value.__enter__.return_value.read.return_value = json.dumps(mock_response).encode('utf-8')
+        mock_urlopen.return_value.__enter__.return_value.read.return_value = \
+            json.dumps(mock_response).encode('utf-8')
 
         doi = '10.1038/nature12373'
         data_key = 'citation_key'
@@ -63,7 +62,8 @@ class TestDOISearch(unittest.TestCase):
         }
 
         mock_urlopen.return_value.__enter__.return_value = MagicMock()
-        mock_urlopen.return_value.__enter__.return_value.read.return_value = json.dumps(mock_response).encode('utf-8')
+        mock_urlopen.return_value.__enter__.return_value.read.return_value = \
+            json.dumps(mock_response).encode('utf-8')
 
         doi = '10.1109/GreatConference.2022.1234567'
         data_key = 'inproceedings_key'
@@ -96,7 +96,8 @@ class TestDOISearch(unittest.TestCase):
         }
 
         mock_urlopen.return_value.__enter__.return_value = MagicMock()
-        mock_urlopen.return_value.__enter__.return_value.read.return_value = json.dumps(mock_response).encode('utf-8')
+        mock_urlopen.return_value.__enter__.return_value.read.return_value = \
+            json.dumps(mock_response).encode('utf-8')
 
         doi = '10.1234/GreatBook.2023.123456'
         data_key = 'book_key'

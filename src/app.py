@@ -109,6 +109,19 @@ def bibtex_text():
 
     return btx, {'content-type': 'text/plain; charset=utf-8'}
 
+@app.post('/doi')
+def add_doi_citation():
+    citations = get_citations()
+
+    doi = request.form.get('doi_identifier')
+    key = request.form.get('citation_key')
+    result = doi_search(doi, key)
+
+    if result == 'OK':
+        return redirect('/')
+
+    return render_template('index.html', citations=citations, error=result)
+
 if test_env:
     @app.get('/reset-db')
     def reset_database():
@@ -118,13 +131,3 @@ if test_env:
     @app.get('/alive')
     def alive():
         return 'yes'
-
-@app.post('/doi')
-def add_doi_citation():
-    citations = get_citations()
-    doi = request.form.get('doi_identifier')
-    key = request.form.get('citation_key')
-    result = doi_search(doi, key)
-    if result == 'OK':
-        return redirect('/')
-    return render_template('index.html',citations=citations, error=result)

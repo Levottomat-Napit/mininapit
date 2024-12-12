@@ -1,31 +1,34 @@
-def generate_bibtex(a):
+def generate_bibtex(citation):
     btxfields = []
 
-    if a.type_as_string == 'article':
+    if citation.type_as_string == 'article':
         btxfields = [
             'author', 'title', 'journal', 'year', 'volume', 'pages',
             'number', 'month', 'note', 'annote'
             ]
 
-    if a.type_as_string == 'inproceedings':
+    if citation.type_as_string == 'inproceedings':
         btxfields = [
             'author', 'title', 'year', 'booktitle', 'editor', 'volume',
             'number', 'series', 'pages', 'month', 'address', 'organization',
             'publisher', 'note', 'annote'
         ]
 
-    if a.type_as_string == 'book':
+    if citation.type_as_string == 'book':
         btxfields = [
             'author', 'title', 'publisher', 'year', 'volume', 'number',
             'series', 'address', 'edition', 'month', 'note', 'annote'
         ]
 
-    btx = f'@{a.type_as_string}{{{a.key},\n'
+    btx = f'@{citation.type_as_string}{{{citation.key},\n'
 
-    for x in btxfields:
-        xx = getattr(a, x)
+    for field in btxfields:
+        value = getattr(citation, field)
 
-        if xx:
-            btx += f'  {x} = {{{xx}}},\n'
+        if value:
+            btx += f'  {field} = {{{value}}},\n'
 
     return btx + '}'
+
+def normal_citation_str(citation):
+    return f'{citation.author}: {citation.title} ({citation.key})'
