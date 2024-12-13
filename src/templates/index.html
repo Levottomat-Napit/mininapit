@@ -81,10 +81,67 @@
         {% endif %}
       </div>
       <a class="flashy-button" href="/btxtxt" target="_blank">BibTeX uuteen ikkunaan</a>
-      <a class="flashy-button" href="/btxtxt" download="mun_bibtex.bib">Lataa BibTeX</a>
+      <button class="flashy-button" onclick="togglePopup()">Lataa BibTeX</button>
     </div>
   </div>
+  <div id="popupOverlay" 
+         class="overlay-container">
+        <div class="popup-box">
+            <h2 style="color: green;">Tiedoston lataus</h2>
+            <form class="form-container">
+                <label class="form-label" 
+                       for="name">
+                  Tiedostonimi:
+                  </label>
+                <input class="form-input" type="text" 
+                       placeholder="Tiedostonimi" 
+                       id="filename-input" download>
+                <a class="btn-submit"
+                        id="download"
+                        href="/btxtxt"
+                        download>
+                  Download
+                </a>
+            </form>
 
+            <button class="btn-close-popup" 
+                    onclick="togglePopup()">
+              Peruuta
+              </button>
+        </div>
+    </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', loadDefaultFilename, false);
+
+    function loadDefaultFilename() {
+      // this could be value from database or cookie
+      let userDefaultFilename = localStorage.getItem('default-filename') || 'generared-file.bib';
+
+      let filenameInput = document.getElementById('filename-input');
+      let fileDownloadLink = document.getElementById('download');
+      fileDownloadLink.setAttribute('download', userDefaultFilename)
+      // load default filename from somewhere, e.g database or cookie
+
+      // set the default name
+      filenameInput.value = userDefaultFilename;
+    }
+
+
+    let button = document.getElementById('download');
+    button.addEventListener('click', function(e) {
+      const defaultFilename = document.getElementById('filename-input').value;
+      saveDefaultFilename(defaultFilename);
+    });
+
+    function saveDefaultFilename(filename) {
+      localStorage.setItem('default-filename', filename);
+      console.log(filename);
+    }
+    function togglePopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.toggle('show');
+    }
+  </script>
 </div>
 
 {% endblock %}
