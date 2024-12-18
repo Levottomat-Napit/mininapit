@@ -62,3 +62,7 @@ SECRET_KEY=somethingsecret
 * Tests should pass
 * If the PR includes todos, they should be all checked
 * The creator of the pull request will merge it when the most recent changes have been approved
+
+## Loppurapsa
+
+[Löytyy täältä](https://cryptpad.fr/pad/#/2/pad/view/-aqtT10aHDuf7udSWGIPtXTqIoU3poCBwBstNfFTw2c/).
